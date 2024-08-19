@@ -1,0 +1,59 @@
+version: '3.8'
+
+networks:
+  app-network:
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:14
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+    ports:
+      - "5432:5432"
+
+  # API Service
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    container_name: api-service
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./apps/api:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    networks:
+      - app-network
+    depends_on:
+      - postgres
+
+  # Client Service
+  client:
+    build:
+      context: ./apps/client
+      dockerfile: Dockerfile
+    container_name: client-service
+    environment:
+      NODE_ENV: development
+    volumes:
+      - ./apps/client:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    networks:
+      - app-network
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
