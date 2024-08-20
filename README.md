@@ -9,6 +9,7 @@ A monorepo setup using NestJS for the backend, Vite for the frontend, and Docker
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running with Docker](#running-with-docker)
+  - [Setup Docker Image for Project](#setup-docker-image-for-project)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -63,6 +64,28 @@ A monorepo setup using NestJS for the backend, Vite for the frontend, and Docker
    ```bash
    docker-compose up -d
    ```
+
+### Setup Docker Image for Project
+1. **Build Docker Image**
+
+   To build the Docker image, run the following command in the root of your project:
+
+   ```bash
+   docker build -t your-app-name .
+   ```
+
+   This command will create a Docker image named your-app-name using the Dockerfile in the root of your project.
+
+2. **Running the Docker Container**
+
+   To run the application inside a Docker container, use the following command:
+
+   ```bash
+   docker run -p 3000:3000 your-app-name
+   ```
+
+   This will start the application, exposing it on port 3000.
+
 
 ## Contributing
 
