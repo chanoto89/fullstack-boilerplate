@@ -3,6 +3,8 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
+import { PostModule } from './post/post.module';
 
 @Module({
   imports: [
@@ -11,6 +13,9 @@ import { AppService } from './app.service';
       rootPath: join(__dirname, '../../client/dist'),
       exclude: ['/api/*'],  // Exclude API routes
     }),
+    // Modules
+    UsersModule,
+    PostModule,
   ],
   controllers: [AppController],
   providers: [AppService],
