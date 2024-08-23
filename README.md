@@ -2,6 +2,17 @@
 
 A monorepo setup using NestJS for the backend, Vite for the frontend, and Docker for containerization.
 
+This repository uses workspaces. You can install a package to the workspace with the following command 
+
+```bash
+    npm install <package-name> -w <workspace-name>
+```
+example:
+```bash
+    npm install <package-name> -w api
+    npm install <package-name> -w client
+```
+
 ## Table of Contents
 
 - [Project Structure](#project-structure)
@@ -28,7 +39,7 @@ A monorepo setup using NestJS for the backend, Vite for the frontend, and Docker
 │       ├── src
 │       ├── public
 │       ├── Dockerfile
-│   │   ├── README.md
+│       ├── README.md
 │       └── ...
 ├── .gitignore
 ├── docker-compose.yml
