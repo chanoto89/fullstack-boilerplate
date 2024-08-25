@@ -20,6 +20,7 @@ example:
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running with Docker](#running-with-docker)
+  - [Connecting to Database](#connecting-to-database)
   - [Setup Docker Image for Project](#setup-docker-image-for-project)
 - [Contributing](#contributing)
 - [License](#license)
@@ -75,6 +76,15 @@ example:
    ```bash
    docker-compose up -d
    ```
+
+### Connecting to Database
+1. **Connect from command line**
+    To connect to the running postgres database from your local machine, you can use the following command
+    ```bash
+    docker-compose exec postgres psql -U user -W db
+    ```
+2. **Enter Password**
+   When prompted, enter "password" as the password
 
 ### Setup Docker Image for Project
 1. **Build Docker Image**
