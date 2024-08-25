@@ -1,9 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsAlphanumeric, IsNumber, isPositive, MaxLength } from "class-validator";
+import { IsNumber, Matches, MaxLength } from "class-validator";
 
 export class CreateUserDto {
   @ApiProperty()
-  @IsAlphanumeric()
+  @Matches(/^[a-zA-Z0-9 ]*$/, {
+    message: 'Only alphanumeric characters and spaces are allowed',
+  })
   @MaxLength(20)
   name: string;
 

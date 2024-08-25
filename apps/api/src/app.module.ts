@@ -3,8 +3,10 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { PostModule } from './post/post.module';
+import { UsersModule } from './resources/users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { databaseConfig } from './config/dataSource';
+import { TodosModule } from './resources/todos/todos.module';
 
 @Module({
   imports: [
@@ -13,9 +15,11 @@ import { PostModule } from './post/post.module';
       rootPath: join(__dirname, '../../client/dist'),
       exclude: ['/api/*'],  // Exclude API routes
     }),
+    // Database connection
+    TypeOrmModule.forRoot(databaseConfig),
+
     // Modules
     UsersModule,
-    PostModule,
   ],
   controllers: [AppController],
   providers: [AppService],
